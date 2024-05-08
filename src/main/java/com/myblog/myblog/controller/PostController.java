@@ -1,11 +1,9 @@
 package com.myblog.myblog.controller;
 
-import ch.qos.logback.core.boolex.EvaluationException;
 import com.myblog.myblog.payload.PostDto;
 import com.myblog.myblog.payload.PostResponse;
 import com.myblog.myblog.service.PostService;
-import javafx.geometry.Pos;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -20,7 +18,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/posts")
 public class PostController {
 
-    private PostService postService;
+    private final PostService postService;
 
     public PostController(PostService postService) {
         this.postService = postService;
@@ -37,7 +35,7 @@ public class PostController {
 
         if (result.hasErrors()){
             List<String> errors = result.getAllErrors().stream()
-                    .map(error -> error.getDefaultMessage())
+                    .map(DefaultMessageSourceResolvable::getDefaultMessage)
                     .collect(Collectors.toList());
             return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
         }
