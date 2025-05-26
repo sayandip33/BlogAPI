@@ -1,15 +1,13 @@
 package com.myblog.myblog;
 
-import com.myblog.myblog.entity.Post;
-import com.myblog.myblog.entity.Role;
-import com.myblog.myblog.repository.PostRepository;
-import com.myblog.myblog.repository.RoleRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import com.myblog.myblog.repository.RoleRepository;
 
 @SpringBootApplication
 public class MyblogApplication implements CommandLineRunner {
